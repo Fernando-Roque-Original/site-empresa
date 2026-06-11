@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MovPrime — Cada movimento vira dado</title>
+  <meta name="description" content="MovPrime: o sensor acessível que transforma o movimento de atletas em métricas de elite. Velocidade, aceleração, potência e prevenção de lesão para times de qualquer esporte." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+
+  <!-- ====== LOADER ====== -->
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <div class="loader__logo">MOV<span>PRIME</span></div>
+      <div class="loader__bar"><span id="loaderBar"></span></div>
+      <div class="loader__pct"><span id="loaderPct">0</span>%</div>
+    </div>
+  </div>
+
+  <!-- ====== CUSTOM CURSOR ====== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ====== NAV ====== -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__logo" data-cursor>MOV<span>PRIME</span></a>
+    <nav class="nav__links">
+      <a href="#produto" data-cursor>Produto</a>
+      <a href="#metricas" data-cursor>Métricas</a>
+      <a href="#modalidades" data-cursor>Modalidades</a>
+      <a href="#equipes" data-cursor>Equipes</a>
+    </nav>
+    <a href="#cta" class="btn btn--sm" data-cursor>Pré-venda</a>
+  </header>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <svg class="hero__grid" preserveAspectRatio="none" viewBox="0 0 1440 900"></svg>
+      <canvas class="hero__particles" id="heroParticles"></canvas>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow reveal-up">
+        <span class="dot"></span> Sensor de performance · esportes de equipe
+      </div>
+
+      <h1 class="hero__title">
+        <span class="line"><span class="line__inner">CADA</span></span>
+        <span class="line"><span class="line__inner">MOVIMENTO</span></span>
+        <span class="line"><span class="line__inner">VIRA <em>DADO</em></span></span>
+      </h1>
+
+      <p class="hero__sub reveal-up">
+        O sensor acessível que captura velocidade, aceleração, potência e risco de lesão —
+        e entrega ciência de elite para a equipe inteira.
+      </p>
+
+      <div class="hero__actions reveal-up">
+        <a href="#cta" class="btn" data-cursor>Garantir pré-venda <span class="btn__arrow">→</span></a>
+        <a href="#metricas" class="btn btn--ghost" data-cursor>Ver a tecnologia</a>
+      </div>
+
+      <div class="hero__stats reveal-up">
+        <div class="stat"><b data-count="1000" data-suffix="Hz">0</b><span>amostragem</span></div>
+        <div class="stat"><b data-count="14" data-suffix="">0</b><span>métricas por sessão</span></div>
+        <div class="stat"><b data-count="8" data-suffix="x">0</b><span>mais barato que a elite</span></div>
+      </div>
+    </div>
+
+    <!-- live acceleration readout -->
+    <div class="hero__readout" id="heroReadout">
+      <div class="readout__head"><span class="live"></span> AO VIVO · #07 — LATERAL</div>
+      <svg class="readout__graph" viewBox="0 0 320 90" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="gradLine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#00E0FF"/><stop offset="1" stop-color="#C6FF36"/>
+          </linearGradient>
+        </defs>
+        <path class="readout__path" id="readoutPath" fill="none" stroke="url(#gradLine)" stroke-width="2.5"/>
+      </svg>
+      <div class="readout__metrics">
+        <div><small>VEL.</small><strong id="mVel">28.4</strong> km/h</div>
+        <div><small>ACEL.</small><strong id="mAcc">4.1</strong> g</div>
+        <div><small>SNAP</small><strong id="mJerk">92</strong> %</div>
+      </div>
+    </div>
+
+    <div class="hero__scroll" data-cursor>
+      <span>scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ====== MARQUEE ====== -->
+  <div class="marquee" id="marquee">
+    <div class="marquee__track">
+      <span>FUTEBOL</span><i>✦</i><span>JIU-JITSU</span><i>✦</i><span>BOXE</span><i>✦</i><span>MMA</span><i>✦</i><span>CARDIO</span><i>✦</i><span>BASQUETE</span><i>✦</i><span>VÔLEI</span><i>✦</i><span>CROSSFIT</span><i>✦</i>
+      <span>FUTEBOL</span><i>✦</i><span>JIU-JITSU</span><i>✦</i><span>BOXE</span><i>✦</i><span>MMA</span><i>✦</i><span>CARDIO</span><i>✦</i><span>BASQUETE</span><i>✦</i><span>VÔLEI</span><i>✦</i><span>CROSSFIT</span><i>✦</i>
+    </div>
+  </div>
+
+  <!-- ====== MANIFESTO ====== -->
+  <section class="manifesto" id="manifesto">
+    <p class="manifesto__text">
+      <span class="word">Dados</span> <span class="word">de</span> <span class="word">elite</span>
+      <span class="word">sempre</span> <span class="word">custaram</span>
+      <span class="word strike">caro</span> <span class="word">demais.</span>
+      <br/>
+      <span class="word accent">A</span> <span class="word accent">MovPrime</span>
+      <span class="word accent">muda</span> <span class="word accent">isso.</span>
+    </p>
+  </section>
+
+  <!-- ====== PRODUTO ====== -->
+  <section class="produto" id="produto">
+    <div class="section-head">
+      <span class="kicker">01 — O Produto</span>
+      <h2 class="section-title reveal-up">Um sensor. <em>Toda</em> a equipe.</h2>
+    </div>
+
+    <div class="produto__grid">
+      <div class="produto__device reveal-up">
+        <div class="device">
+          <div class="device__pulse"></div>
+          <div class="device__body">
+            <div class="device__logo">M</div>
+            <div class="device__led"></div>
+          </div>
+          <div class="device__ring"></div>
+        </div>
+        <div class="device__spec"><span>9g</span> · à prova de suor · 18h de bateria · Bluetooth 5.3</div>
+      </div>
+
+      <div class="produto__steps">
+        <div class="step reveal-up">
+          <span class="step__n">01</span>
+          <h3>Vista</h3>
+          <p>Clipe leve no colete, faixa ou kimono. Atleta nem sente. Zero atrito no treino.</p>
+        </div>
+        <div class="step reveal-up">
+          <span class="step__n">02</span>
+          <h3>Treine</h3>
+          <p>O sensor lê aceleração em 3 eixos a 1000Hz e transmite em tempo real para o tablet do treinador.</p>
+        </div>
+        <div class="step reveal-up">
+          <span class="step__n">03</span>
+          <h3>Analise</h3>
+          <p>Velocidade, potência, fadiga e assimetria prontas na hora. Decisão baseada em dado, não em achismo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== MÉTRICAS EM AÇÃO (showpiece) ====== -->
+  <section class="metricas" id="metricas">
+    <div class="section-head">
+      <span class="kicker">02 — A Ciência</span>
+      <h2 class="section-title reveal-up">Do gráfico de aceleração <br/>nascem <em>14 métricas</em>.</h2>
+      <p class="section-lead reveal-up">A mesma curva, lida pela matemática. A derivada vira explosividade. A integral vira potência. O resto vira vantagem.</p>
+    </div>
+
+    <div class="metricas__stage">
+      <svg class="metricas__chart" id="metricChart" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#C6FF36" stop-opacity="0.35"/>
+            <stop offset="1" stop-color="#C6FF36" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="curveStroke" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#00E0FF"/><stop offset="1" stop-color="#C6FF36"/>
+          </linearGradient>
+        </defs>
+        <!-- grid -->
+        <g class="chart-grid" id="chartGrid"></g>
+        <!-- integral area -->
+        <path class="chart-area" id="chartArea" fill="url(#areaFill)" opacity="0"/>
+        <!-- main curve -->
+        <path class="chart-curve" id="chartCurve" fill="none" stroke="url(#curveStroke)" stroke-width="4"/>
+        <!-- derivative tangent -->
+        <line class="chart-tangent" id="chartTangent" stroke="#FF3DCB" stroke-width="2.5" stroke-dasharray="6 5"/>
+        <circle class="chart-dot" id="chartDot" r="7" fill="#fff"/>
+      </svg>
+
+      <div class="metricas__legend">
+        <div class="legend-item" data-k="peak">
+          <span class="swatch" style="--c:#C6FF36"></span>
+          <div><b>Explosão</b><small>pico de aceleração — o arranque</small></div>
+        </div>
+        <div class="legend-item" data-k="deriv">
+          <span class="swatch" style="--c:#FF3DCB"></span>
+          <div><b>Snap (derivada)</b><small>da/dt — velocidade do impacto</small></div>
+        </div>
+        <div class="legend-item" data-k="integ">
+          <span class="swatch" style="--c:#00E0FF"></span>
+          <div><b>Impulso (integral)</b><small>∫a·dt — energia transferida</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== MODALIDADES (horizontal pin) ====== -->
+  <section class="modalidades" id="modalidades">
+    <div class="modalidades__sticky">
+      <div class="modalidades__head">
+        <span class="kicker">03 — Modalidades</span>
+        <h2 class="section-title">Um sensor, <em>cada</em> esporte.</h2>
+      </div>
+      <div class="modalidades__track" id="modTrack">
+        <article class="modcard" style="--c:#C6FF36">
+          <span class="modcard__idx">01</span>
+          <h3>Futebol</h3>
+          <ul><li>Sprints & desacelerações</li><li>Distância e zonas de intensidade</li><li>Mudanças de direção</li><li>Índice de fadiga</li></ul>
+          <div class="modcard__metric"><b>+38</b><span>sprints / jogo</span></div>
+        </article>
+        <article class="modcard" style="--c:#00E0FF">
+          <span class="modcard__idx">02</span>
+          <h3>Jiu-Jitsu</h3>
+          <ul><li>Explosividade em transições</li><li>Densidade de scrambles</li><li>Impacto de quedas (g)</li><li>Tempo sob esforço</li></ul>
+          <div class="modcard__metric"><b>6.2g</b><span>pico na queda</span></div>
+        </article>
+        <article class="modcard" style="--c:#FF3DCB">
+          <span class="modcard__idx">03</span>
+          <h3>Boxe</h3>
+          <ul><li>Velocidade do punho</li><li>Impacto estimado (impulso)</li><li>Cadência de golpes/min</li><li>Simetria esquerda/direita</li></ul>
+          <div class="modcard__metric"><b>9.1</b><span>m/s no jab</span></div>
+        </article>
+        <article class="modcard" style="--c:#FFB200">
+          <span class="modcard__idx">04</span>
+          <h3>MMA</h3>
+          <ul><li>Volume total de golpes</li><li>Carga de combate</li><li>Quedas e scrambles</li><li>Recuperação entre rounds</li></ul>
+          <div class="modcard__metric"><b>312</b><span>ações / round</span></div>
+        </article>
+        <article class="modcard" style="--c:#7C5CFF">
+          <span class="modcard__idx">05</span>
+          <h3>Cardio</h3>
+          <ul><li>Cadência e oscilação vertical</li><li>Tempo de contato com solo</li><li>Simetria de passada</li><li>Training load (ACWR)</li></ul>
+          <div class="modcard__metric"><b>184</b><span>passos / min</span></div>
+        </article>
+        <article class="modcard modcard--next">
+          <span class="modcard__idx">+</span>
+          <h3>E vem mais</h3>
+          <ul><li>Basquete & Vôlei — saltos e aterrissagem</li><li>CrossFit — velocidade de barra (VBT)</li><li>Rugby — carga de colisão</li><li>Tênis — saque e raquete</li></ul>
+          <div class="modcard__metric"><b>∞</b><span>roadmap</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DASHBOARD ====== -->
+  <section class="dashboard" id="dashboard">
+    <div class="section-head">
+      <span class="kicker">04 — O Painel</span>
+      <h2 class="section-title reveal-up">A equipe inteira <em>numa tela</em>.</h2>
+    </div>
+
+    <div class="dash reveal-up">
+      <div class="dash__top">
+        <div class="dash__title"><span class="live"></span> Sessão ao vivo · Sub-20</div>
+        <div class="dash__tabs"><span class="on">Visão geral</span><span>Atletas</span><span>Lesão</span></div>
+      </div>
+      <div class="dash__grid">
+        <div class="dcard dcard--big">
+          <small>CARGA DA EQUIPE</small>
+          <div class="dcard__spark" id="dashSpark"></div>
+          <b>Alta · 78%</b>
+        </div>
+        <div class="dcard"><small>VEL. MÁX</small><b>31.2<i>km/h</i></b><span class="up">↑ 4%</span></div>
+        <div class="dcard"><small>SPRINTS</small><b>214</b><span class="up">↑ 11%</span></div>
+        <div class="dcard dcard--alert"><small>RISCO DE LESÃO</small><b>2 atletas</b><span class="down">assimetria ↑</span></div>
+        <div class="dcard"><small>FADIGA</small><b>Baixa</b><span class="muted">−9% pico</span></div>
+        <div class="dcard"><small>ATLETAS ATIVOS</small><b>23</b><span class="muted">de 25</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== EQUIPES / PREÇOS ====== -->
+  <section class="precos" id="equipes">
+    <div class="section-head">
+      <span class="kicker">05 — Para Equipes</span>
+      <h2 class="section-title reveal-up">Acessível <em>de verdade</em>.</h2>
+      <p class="section-lead reveal-up">Hardware enxuto + software por equipe. Comece pequeno, escale para o clube inteiro.</p>
+    </div>
+
+    <div class="precos__grid">
+      <div class="plan reveal-up">
+        <div class="plan__name">Atleta</div>
+        <div class="plan__price"><span>R$</span>29<small>/mês</small></div>
+        <p class="plan__desc">Amador individual. App + métricas essenciais.</p>
+        <ul><li>1 sensor</li><li>Métricas básicas</li><li>Histórico de 30 dias</li></ul>
+        <a href="#cta" class="btn btn--ghost btn--block" data-cursor>Quero testar</a>
+      </div>
+      <div class="plan plan--feat reveal-up">
+        <div class="plan__tag">Mais escolhido</div>
+        <div class="plan__name">Equipe</div>
+        <div class="plan__price"><span>R$</span>299<small>/mês</small></div>
+        <p class="plan__desc">Até 15 atletas. Painel do treinador completo.</p>
+        <ul><li>Até 15 sensores</li><li>Painel ao vivo + comparativos</li><li>Prevenção de lesão (ACWR)</li><li>Exportação de relatórios</li></ul>
+        <a href="#cta" class="btn btn--block" data-cursor>Garantir pré-venda</a>
+      </div>
+      <div class="plan reveal-up">
+        <div class="plan__name">Clube</div>
+        <div class="plan__price"><span>R$</span>799<small>/mês</small></div>
+        <p class="plan__desc">Até 50 atletas, múltiplas equipes e modalidades.</p>
+        <ul><li>Até 50 sensores</li><li>Multi-equipe</li><li>API & integrações</li><li>Suporte dedicado</li></ul>
+        <a href="#cta" class="btn btn--ghost btn--block" data-cursor>Falar com vendas</a>
+      </div>
+    </div>
+    <p class="precos__foot">Federações e white-label sob consulta · Valores ilustrativos de lançamento.</p>
+  </section>
+
+  <!-- ====== CTA ====== -->
+  <section class="cta" id="cta">
+    <div class="cta__inner">
+      <h2 class="cta__title reveal-up">Sua equipe merece <em>dados de elite</em>.</h2>
+      <p class="reveal-up">Entre na pré-venda e garanta o lote fundador com preço travado.</p>
+      <form class="cta__form reveal-up" onsubmit="return false;">
+        <input type="email" placeholder="seu@email.com" aria-label="email" />
+        <button class="btn" data-cursor>Entrar na lista <span class="btn__arrow">→</span></button>
+      </form>
+      <span class="cta__note reveal-up">Para investidores: <a href="#" data-cursor>solicitar deck →</a></span>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer__big">MOVPRIME</div>
+    <div class="footer__row">
+      <span>© 2026 MovPrime · Ciência do movimento, acessível.</span>
+      <div class="footer__links">
+        <a href="#" data-cursor>Instagram</a><a href="#" data-cursor>LinkedIn</a><a href="#" data-cursor>contato@movprime.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
