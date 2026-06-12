@@ -146,7 +146,8 @@ section{position:relative}
 .manifesto .word{display:inline-block;opacity:.18;transition:opacity .1s}
 .manifesto .word.accent{color:var(--accent)}
 .manifesto .strike{position:relative}
-.manifesto .strike::after{content:"";position:absolute;left:-4%;top:54%;width:0;height:6px;background:var(--accent-3);transform:rotate(-3deg)}
+.manifesto .strike::after{content:"";position:absolute;left:-4%;top:54%;width:0;height:6px;background:var(--accent-3);transform:rotate(-3deg);box-shadow:0 0 16px var(--accent-3);transition:width .5s var(--ease) .2s}
+.manifesto .strike.is-struck::after{width:108%}
 
 /* ---------- PRODUTO ---------- */
 .produto__grid{max-width:var(--maxw);margin:0 auto;padding:20px var(--pad) 120px;

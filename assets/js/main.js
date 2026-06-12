@@ -113,7 +113,7 @@
       let d = `M0 ${H / 2}`;
       for (let xx = 0; xx <= W; xx += 8) {
         const t = xx / W;
-        const yy = H / 2 - (Math.sin(t * 12 + Date.now() / 400) * 18 + Math.sin(t * 5) * 10) * (0.4 + 0.6 * Math.random() * 0 + 0.6);
+        const yy = H / 2 - (Math.sin(t * 12 + Date.now() / 400) * 18 + Math.sin(t * 5) * 10);
         d += ` L${xx} ${Math.max(6, Math.min(H - 6, yy))}`;
       }
       rPath.setAttribute('d', d);
@@ -173,37 +173,24 @@
     gsap.to(mt, { xPercent: -50, duration: 22, ease: 'none', repeat: -1 });
   }
 
-  /* ---------- MANIFESTO WORD HIGHLIGHT ---------- */
+  /* ---------- MANIFESTO WORD HIGHLIGHT + STRIKE ---------- */
   const words = gsap.utils.toArray('.manifesto .word');
-  if (words.length) {
+  const strike = document.querySelector('.manifesto .strike');
+  if (words.length && !reduce) {
     gsap.to(words, {
       opacity: 1, stagger: .08, ease: 'none',
       scrollTrigger: { trigger: '.manifesto', start: 'top 70%', end: 'bottom 75%', scrub: true }
     });
-    gsap.to('.manifesto .strike::after', {});
-    gsap.fromTo('.manifesto .strike',
-      { '--w': 0 },
-      { scrollTrigger: { trigger: '.manifesto', start: 'top 45%', once: true },
-        onStart() { document.querySelector('.manifesto .strike').style.setProperty('--x', 1); } });
-    // animate strike width via direct style on ::after through CSS var trick
+    // strike-through on "caro" once it scrolls into view
     ScrollTrigger.create({
-      trigger: '.manifesto', start: 'top 45%', once: true,
-      onEnter: () => {
-        const s = document.querySelector('.manifesto .strike');
-        if (s) gsap.to(s, { duration: .5, onUpdate(){}, onComplete(){}, });
-      }
+      trigger: '.manifesto', start: 'top 50%', once: true,
+      onEnter: () => strike?.classList.add('is-struck')
     });
+  } else if (words.length) {
+    // reduced motion: reveal everything, no scrub
+    gsap.set('.manifesto .word', { opacity: 1 });
+    strike?.classList.add('is-struck');
   }
-  // simpler robust strike-through
-  ScrollTrigger.create({
-    trigger: '.manifesto', start: 'top 55%', once: true,
-    onEnter: () => {
-      const after = document.querySelector('.manifesto .strike');
-      if (after) {
-        after.animate([{}, {}], {}); // noop guard
-      }
-    }
-  });
 
   /* ---------- MÉTRICAS CHART (the showpiece) ---------- */
   const curve = document.getElementById('chartCurve');
